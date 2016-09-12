@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+
+<title>Course Recommender-admin tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<head>
+<style>
+           body {
+    background-image: url("https://s13.postimg.org/41qq5059j/logo_Copy.png");
+        backface-visibility:hidden ;
+        background-repeat: no-repeat;
+        background-position: top;
+         background-size: 100%;}
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 150%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+button.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
+</style>
+</head>
+<body>
+<font color="white"><p>Welcome, {{ user.username }}</p></font>
+<div class="w3-row-padding  w3-padding-128 w3-container" >
+
+  <div class="w3-content">
+    <div class="w3-twothird">
+
+<h2>Admin Tools:</h2>
+<p> </p>
+<button class="accordion">Update Curriculum</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form2 %}
+				<li><a href="{{ form2.docfile.url }}">{{ form2.docfile.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+        <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form2.non_field_errors }}</p>
+			<p>{{ form2.docfile.label_tag }} {{ form2.docfile.help_text }}</p>
+			<p>
+				{{ form2.docfile.errors }}
+				{{ form2.docfile }}
+                {{ form1.MyForms }}
+
+
+			</p>
+           <a><button class="submit">update</button></a>
+        </form>
+</div>
+
+<button class="accordion">Add curriculum</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form4 %}
+				<li><a href="{{ form4.docfile.url }}">{{ form4.docfile.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form4.non_field_errors }}</p>
+			<p>{{ form4.docfiles.label_tag }} {{ form4.docfiles.help_text }}</p>
+			<p>
+				{{ form4.docfiles.errors }}
+				{{ form4.docfiles }}
+                {{ form3.Add }}
+
+
+
+			</p>
+           <a><button class="submit">Add</button></a>
+        </form>
+</div>
+    <button class="accordion">Add Departmental Elective Course</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form6 %}
+				<li><a href="{{ form6.AddCourse.url }}">{{ form6.AddCourse.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form6.non_field_errors }}</p>
+			<p>{{ form6.AddCourse.label_tag }} {{ form6.AddCourse.help_text }}</p>
+			<p>
+				{{ form6.AddCourse.errors }}
+				{{ form6.AddCourse }}
+                {{ form7.select}}
+
+
+
+			</p>
+           <a><button class="submit">Add</button></a>
+        </form>
+</div>
+     <button class="accordion">Remove Departmental Elective Course</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form8 %}
+				<li><a href="{{ form8.RemoveDepElective.url }}">{{ form8.RemoveDepElective.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form8.non_field_errors }}</p>
+			<p>{{ form8.RemoveDepElective.label_tag }} {{ form8.RemoveDepElective.help_text }}</p>
+			<p>
+				{{ form8.RemoveDepElective.errors }}
+				{{ form8.RemoveDepElective }}
+                {{ form9.select}}
+
+
+
+			</p>
+           <a><button class="submit">Remove</button></a>
+        </form>
+</div>
+    <button class="accordion">Edit Departmental Elective Course</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form10 %}
+				<li><a href="{{ form10.EditOldCourse.url }}">{{ form10.EditOldCourse.name }}{{ form11.NewCourseEdited }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+        <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form10.non_field_errors }}</p>
+			<p>{{ form10.EditOldCourse.label_tag }}{{ form10.EditOldCourse.help_text }}{{ form10.EditOldCourse }}</p>
+
+			<p>
+				{{ form10.EditOldCourse.errors }}
+                {{ form11.NewCourseEdited.label_tag  }}
+                {{ form11.NewCourseEdited }}
+
+
+                {{ form12.select }}
+
+
+
+			</p>
+           <a><button class="submit">Edit</button></a>
+        </form>
+</div>
+    <button class="accordion">Course Replecement</button>
+<div class="panel">
+  {% if documents %}
+			<ul>
+			{% for document in form13 %}
+				<li><a href="{{ form13.Replecmentfromold.url }}">{{ form13.Replecmentfromold.name }}{{ form13.Replecmentfromold }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+        <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form13.non_field_errors }}</p>
+			<p>{{ form13.Replecmentfromold.label_tag }}{{ form13.Replecmentfromold.help_text }}{{ form13.Replecmentfromold}}</p>
+
+			<p>
+				{{ form13.Replecmentfromold.errors }}
+                {{ form14.ReplecmentfromNew.label_tag  }}
+                {{ form14.ReplecmentfromNew}}
+
+
+                {{ form15.select }}
+
+
+
+			</p>
+           <a><button class="submit">Edit</button></a>
+        </form>
+</div>
+
+
+<button class="accordion">Refresh Offered Coureses</button>
+<div id="foo" class="panel">
+     {% if documents %}
+			<ul>
+			{% for document in form5 %}
+				<li><a href="{{ form5.offered_courses.url }}">{{ form5.offered_courses.name }}</a></li>
+			{% endfor %}
+			</ul>
+
+		{% endif %}
+    <form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<p>{{ form5.non_field_errors }}</p>
+			<p>{{ form5.offered_courses.label_tag }} {{ form5.offered_courses.help_text }}</p>
+			<p>
+				{{ form5.offered_courses.errors }}
+				{{ form5.offered_courses }}
+
+
+
+			</p>
+
+           <a><button class="submit">Refresh</button></a>
+        </form>
+
+
+</div>
+</div>
+  </div>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+        this.classList.toggle("active");
+        this.nextElementSibling.classList.toggle("show");
+  }
+}
+</script>
+
+</body>
+</html>

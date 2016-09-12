@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<title>Course Recommender</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+      body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-navbar,h1,button,.w3-text-gold{font-family: "Montserrat", sans-serif}
+
+
+
+    .button4 {border-radius: 12px;}
+
+
+    img {
+    border-radius: 70%;
+}
+    body {
+    background-image: url("https://s13.postimg.org/41qq5059j/logo_Copy.png");
+        backface-visibility:hidden ;
+        background-repeat: no-repeat;
+        background-position: top;
+         background-size: 100%;
+
+
+
+}
+
+.w3-navbar { height: 6.7%}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position:absolute; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: scroll; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    max-height: 100%;
+    overflow-y: initial !important
+
+}
+
+
+
+/* Add Animation */
+
+
+
+table {
+    border-collapse: collapse;
+    width: 300%;
+}
+
+th, td {
+
+    text-align: center;
+    padding: 8px;
+    border: solid 1px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+
+</style>
+
+<body>
+
+<ul class="w3-navbar w3-white   w3-card-2 w3-top w3-left-align w3-large">
+  <li class="w3-hide-medium  w3-hide-large w3-opennav w3-right">
+    <a class="w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+  </li>
+
+  <li><a href="http://cs.sehir.edu.tr/courserecommender/" class="w3-padding-large w3-white"><i class="fa fa-home w3-xlarge "></i></a></li>
+  {% if user and not user.is_anonymous %}
+      <li class="w3-hide-small w3-right"><a   class="w3-padding-large w3-right w3-hover-black"> {{ user.get_full_name|default:user.username }}</a></li>
+
+
+
+    {% else %}
+     <li class="w3-hide-small w3-right"><a  href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="w3-padding-large w3-right w3-hover-black"><i class="fa fa-user w3-large"></i> Log In</a></li>
+
+     {% endif %}
+
+</ul>
+
+
+
+
+
+<!-- Header -->
+
+  <div class="w3-container w3-padding-128">
+
+
+  </div>
+<div class="w3-row-padding w3-white w3-padding-64 w3-center w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+
+   <table>
+   <tr><th colspan="2" style="text-align: left">Mandatory Courses:</th></tr>
+
+  <tr>
+    <th>Course Code</th>
+    <th> Results</th>
+
+  </tr>
+  <ul>
+    {% for CourseCode,Result in newMan %}
+
+
+
+
+  <tr>
+      <td>{{ CourseCode }}</td>
+      <td>{{ Result }}</td>
+
+  </tr>
+
+
+{% endfor %}
+
+</ul>
+        </table >
+    <p></p>
+    <p></p>
+
+
+        <table>
+        <tr><th colspan="2" style="text-align: left">UNI Courses:</th></tr>
+
+
+        <tr>
+    <th>Course Code</th>
+    <th> Results</th>
+
+  </tr>
+  <ul>
+    {% for CourseCode,Result in newUni %}
+
+
+
+
+  <tr>
+      <td>{{ CourseCode }}</td>
+      <td>{{ Result }}</td>
+
+  </tr>
+
+
+{% endfor %}
+
+</ul>
+        </table >
+    <p></p>
+    <p></p>
+
+
+        <table>
+        <tr><th colspan="2" style="text-align: left">Departmental Elective Courses:</th></tr>
+
+
+        <tr>
+    <th>Course Code</th>
+    <th> Results</th>
+
+  </tr>
+  <ul>
+    {% for CourseCode,Result in newDepartmentElective %}
+
+
+
+
+  <tr>
+      <td>{{ CourseCode }}</td>
+      <td>{{ Result }}</td>
+
+  </tr>
+
+
+{% endfor %}
+
+</ul>
+        </table>
+    <p></p>
+    <p></p>
+        <table>
+        <tr><th colspan="2" style="text-align: left">General Elective Courses:</th></tr>
+  <tr>
+    <th>Course Code</th>
+    <th> Results</th>
+
+  </tr>
+  <ul>
+    {% for CourseCode,Result in newGeneral %}
+
+
+
+
+  <tr>
+      <td>{{ CourseCode }}</td>
+
+      <td>{{ Result }}</td>
+
+  </tr>
+
+
+
+
+{% endfor %}
+
+
+</ul>
+        </table>
+
+
+
+
+
+    </div>
+          </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">
+  <div class="w3-xlarge w3-padding-32">
+   <a href="https://www.facebook.com/IstanbulSehirUniversitesi" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+   <a href="https://www.youtube.com/user/sehiruniversitesi" class="w3-hover-text-red"><i class="fa fa-youtube"></i></a>
+   <a href="https://twitter.com/SehirUniversite" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+   <a href="https://www.instagram.com/sehiruniversite/" class="w3-hover-text-blue"><i class="fa fa-instagram"></i></a>
+   <a href="https://www.linkedin.com/edu/school?id=23063" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
+ </div>
+ <p>Powered by <a target="_blank">Istanbul Sehir University</a></p>
+</footer>
+
+
+<script>
+function toggle() {
+ if( document.getElementById("hidethis").style.display=='none' ){
+   document.getElementById("hidethis").style.display = 'table-row'; // set to table-row instead of an empty string
+ }else{
+   document.getElementById("hidethis").style.display = 'none';
+ }
+}
+</script>
+
+
+
+</body>
+</html>
+
+
