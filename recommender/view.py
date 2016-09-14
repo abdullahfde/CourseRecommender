@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+
 __author__ = 'abdullahfadel'
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from recommendations import *
@@ -238,7 +239,7 @@ def get_data(request):
 
                 transcripts.objects.filter().delete()
 
-            return HttpResponseRedirect('/Result/')
+            return redirect('result')
 
 
 
@@ -721,7 +722,7 @@ def my_view(request):
             obj2 = Curriculum()
             obj2.Curriculum = InserData
             obj2.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
 
     if request.method == 'POST':
         form5 = offered_courses(request.POST)
@@ -731,7 +732,7 @@ def my_view(request):
             RefreshData = OfferedCourses.objects.get(id=1)
             RefreshData.AllCourses = getting_data_from_function
             RefreshData.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
 
     if request.method == 'POST':
         form6 = AddDepartmentalElective(request.POST)
@@ -745,7 +746,7 @@ def my_view(request):
                 SaveChanges = Curriculum.objects.get(id=IDDep)
                 SaveChanges.Curriculum = PassToAddCourse
                 SaveChanges.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
     if request.method == 'POST':
         form8 = RemoveDepartmentalEelective(request.POST)
         form9 = SelectDepartmentForRemoveCourse(request.POST)
@@ -757,7 +758,7 @@ def my_view(request):
                 SaveChanges1 = Curriculum.objects.get(id=IDDep1)
                 SaveChanges1.Curriculum = PassToRemoveCourse
                 SaveChanges1.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
     if request.method == 'POST':
         form10 = OldCourse(request.POST)
         form11 = NewCourse(request.POST)
@@ -772,7 +773,7 @@ def my_view(request):
                     SaveChanges2 = Curriculum.objects.get(id=DepID)
                     SaveChanges2.Curriculum = PassToEditCourse
                     SaveChanges2.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
     if request.method == 'POST':
         form13 = Replecmentfrom(request.POST)
         form14 = ReplecmentTo(request.POST)
@@ -788,7 +789,7 @@ def my_view(request):
                     SaveChanges3 = ReplecmentCourse.objects.get(id=IDE2)
                     SaveChanges3.ReplecmentCourse = PassToReplce
                     SaveChanges3.save()
-            return HttpResponseRedirect('/admin_tools/')
+            return redirect('admin-tools')
 
 
 
