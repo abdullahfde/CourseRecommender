@@ -37,9 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles', 'recommender', 'social.apps.django_app.default'
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '254558244869-7oemcgmsh73m4vcgnsrlv98khvua05bv.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '739929149157-ao2o4n34uoghnm973qo30uhkub1h6n3r.apps.googleusercontent.com'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'pnUgpMT7pJkq7SkJZ9lwCLLx'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'L-fHi8Ad4dEyi6NjTbJKoovu'
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend')
