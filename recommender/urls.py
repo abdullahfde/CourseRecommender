@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^courserecommender/login/$', view.login_user, name="admin-login"),
     url(r'^courserecommender/usersaved/$', view.UserSaved, name="usersaved"),
     url(r'^courserecommender/admin-tools/$', view.my_view, name="admin-tools"),
-    url('courserecommender/', include('social.apps.django_app.urls', namespace='social')),
-    url('courserecommender/', include('django.contrib.auth.urls', namespace='auth'))
+    url('', include('social.apps.django_app.urls', namespace='social')),
+    url('', include('django.contrib.auth.urls', namespace='auth'))
 
 ]
