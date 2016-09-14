@@ -239,7 +239,7 @@ def get_data(request):
 
                 transcripts.objects.filter().delete()
 
-            return HttpResponseRedirect('/Result/')
+            return redirect('/Result/')
 
 
 
