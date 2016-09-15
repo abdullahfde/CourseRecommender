@@ -19,7 +19,7 @@ from recommender import view
 
 urlpatterns = [
     url(r'^courserecommender/admin/', include(admin.site.urls)),
-    url(r'^courserecommender/$', view.get_data),  # http://cs.sehir.edu.tr/courserecommender/
+    url(r'^courserecommender1/$', view.get_data),  # http://cs.sehir.edu.tr/courserecommender/
     url(r'^courserecommender/result/$', view.get_recommendations, name="result"),
     url(r'^courserecommender/login/$', view.login_user, name="admin-login"),
     url(r'^courserecommender/usersaved/$', view.UserSaved, name="usersaved"),
