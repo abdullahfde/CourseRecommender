@@ -23,6 +23,9 @@ critics = {'Lisa Rose': {'Lady in the Water': 2.5, 'Snakes on a Plane': 3.5,
 from math import sqrt
 
 
+
+
+
 # Returns a distance-based similarity score for person1 and person2
 def sim_distance(prefs, person1, person2):
     # Get the list of shared_items
