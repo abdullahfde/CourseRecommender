@@ -6,6 +6,8 @@ class DocumentForm(forms.Form):
     docfile = forms.FileField(
         label='PDF requried')
 
+    
+    
 
 def get_my_choices():
     global bn
