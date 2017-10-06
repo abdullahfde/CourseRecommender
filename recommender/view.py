@@ -31,7 +31,7 @@ escap_list = ['F(R)', 'D-(R)', 'D(R)', 'D+(R)', 'C-(R)', 'C(R)', 'C+(R)', 'W', '
 Data = {}
 DataCatgory = {}
 
-
+#in order parse the trascrpit
 def pdfparser(filename, txtfile):
     t = os.path.join(settings.MEDIA_ROOT, txtfile + '.txt')
 
@@ -130,7 +130,7 @@ def pdfparser(filename, txtfile):
     # Department = unicode(department, 'utf-8').encode('utf-8')
 
     return course_dict
-
+#get the data 
 
 def get_data(request):
     checkinguser = []
